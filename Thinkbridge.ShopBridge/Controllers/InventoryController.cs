@@ -13,15 +13,18 @@ namespace Thinkbridge.ShopBridge.Controllers
     public class InventoryController : ApiController
     {
         ILog log;
-        public IEnumerable<usp_RetieveInventory_Result> Get()
+        public IHttpActionResult Get()
         {
             try
             {
-                // List<usp_RetieveInventory_Result> response = new List<usp_RetieveInventory_Result>();
-                dynamic response; // = new ObjectResult<usp_RetieveInventory_Result>();
+                List<usp_RetieveInventory_Result> response = new List<usp_RetieveInventory_Result>();
                 using (DatabaseEntities db = new DatabaseEntities())
                 {
-                    response = db.usp_RetieveInventory();
+                    var data = db.usp_RetieveInventory();
+                    foreach (var item in data)
+                    {
+                        response.Add(item);
+                    }
                 }
                 return Ok(response);
             }
@@ -69,16 +72,15 @@ namespace Thinkbridge.ShopBridge.Controllers
         {
             log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             usp_RetieveInventory_Result response = product;
-            Guid inventoryId = Guid.NewGuid();
             try
             {
                 using (DatabaseEntities db = new DatabaseEntities())
                 {
                     log.Info(product);
-                    db.usp_CreateInventory(inventoryId, product.name, product.price, product.productimage, product.quantity, product.description);
-                    log.Info("product updated with id " + inventoryId);
+                    db.usp_UpdateInventory(id, product.name, product.price, product.productimage, product.quantity, product.description);
+                    log.Info("product updated with id " + id);
                 }
-                response.inventoryid = inventoryId;
+                response.inventoryid = id;
                 return Ok(response);
             }
             catch (Exception ex)
