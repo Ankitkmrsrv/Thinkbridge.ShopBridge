@@ -121,7 +121,6 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>Thinkbridge.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Thinkbridge.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

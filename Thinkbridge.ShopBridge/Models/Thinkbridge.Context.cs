@@ -80,8 +80,12 @@ namespace Thinkbridge.ShopBridge.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspCreateInventory", nameParameter, priceParameter, productImageParameter, quantityParameter, descriptionParameter);
         }
     
-        public virtual int usp_CreateInventory(string name, Nullable<decimal> price, string productImage, Nullable<int> quantity, string description)
+        public virtual int usp_CreateInventory(Nullable<System.Guid> id, string name, Nullable<decimal> price, string productImage, Nullable<int> quantity, string description)
         {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
@@ -102,7 +106,7 @@ namespace Thinkbridge.ShopBridge.Models
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_CreateInventory", nameParameter, priceParameter, productImageParameter, quantityParameter, descriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_CreateInventory", idParameter, nameParameter, priceParameter, productImageParameter, quantityParameter, descriptionParameter);
         }
     
         public virtual int usp_DeleteInventory(Nullable<System.Guid> productId)

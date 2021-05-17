@@ -38,6 +38,7 @@ warning 6002: The table/view 'Thinkbridge.ShopBridge.dbo.Log' does not have a pr
           <Property Name="Exception" Type="varchar" MaxLength="2000" />
         </EntityType>
         <Function Name="usp_CreateInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Price" Type="decimal" Mode="In" />
           <Parameter Name="ProductImage" Type="nvarchar" Mode="In" />
@@ -104,6 +105,7 @@ warning 6002: The table/view 'Thinkbridge.ShopBridge.dbo.Log' does not have a pr
             <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_CreateInventory">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Price" Mode="In" Type="Decimal" />
             <Parameter Name="ProductImage" Mode="In" Type="String" />
