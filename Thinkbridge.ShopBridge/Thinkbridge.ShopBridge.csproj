@@ -107,6 +107,12 @@
       <DependentUpon>Thinkbridge.edmx</DependentUpon>
       <LastGenOutput>Thinkbridge.cs</LastGenOutput>
     </Content>
+    <Content Include="SQL Queries\Create Db.sql" />
+    <Content Include="SQL Queries\Create Invetory table.sql" />
+    <Content Include="SQL Queries\Create log table.sql" />
+    <Content Include="SQL Queries\usp_CreateInventory.sql" />
+    <Content Include="SQL Queries\usp_DeleteInventory.sql" />
+    <Content Include="SQL Queries\usp_RetieveInventory.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
